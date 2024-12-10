@@ -9,6 +9,7 @@ spec:
       role: admin-back-end-api
   policyTypes:
   - Ingress
+  - Egress
   ingress:
     - from:
         - podSelector:
@@ -17,7 +18,14 @@ spec:
       ports:
         - protocol: TCP
           port: 80
-
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              role: admin-front-end
+      ports:
+        - protocol: TCP
+          port: 80
 
 ---
 
